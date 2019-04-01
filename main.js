@@ -12,8 +12,9 @@ function update() {
     if(xp >= xpNeeded) {
         xp = 0;
         xpNeeded = Math.round(xpNeeded * 1.25);
-        level++;
+        level += 1;
         Console.apply("Level up! Level: " + level + " Xpneeded: " + xpNeeded);
     }
+    xp += 1;
 }
 
