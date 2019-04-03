@@ -1,0 +1,26 @@
+.AttackButton {
+    background-color: red;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  position: relative;
+  bottom: -275;
+  left: 675;
+}
+
+.Ehealth {
+    position: relative;
+  bottom: -200;
+  left: 675;
+  color: red;
+}
+
+.health {
+    position: relative;
+  bottom: -260;
+  left: 675;
+  color: red;
+}
