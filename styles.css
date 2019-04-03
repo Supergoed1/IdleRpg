@@ -24,3 +24,10 @@
   left: 675;
   color: red;
 }
+
+.gold {
+  position: relative;
+  bottom: -100;
+  left: 675;
+  color: gold;
+}

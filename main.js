@@ -6,14 +6,24 @@ var player = {
     xp: 0,
     xpNeeded: 10,
     multiplier: 1.20,
-    attack: 1
+    attack: 1,
+    levelUp: function() {
+        player.xp = 0;
+        player.xpNeeded = Math.round(player.xpNeeded * player.multiplier);
+        player.level += 1;
+        player.maxHealth += 2;
+        player.health = player.maxHealth;
+        player.attack += 1;
+        console.log("Level up! Level: " + player.level + " Xpneeded: " + player.xpNeeded);
+    }
 }
 var enemy = {
     name: "Goblin",
     health: 5,
     maxHealth: 5,
     xpdrop: 5,
-    golddrop: 5
+    golddrop: 5,
+    attack: 1
 }
 
 var gameLoop = setInterval("update()", 100);
@@ -21,21 +31,27 @@ var gui = setInterval("updateGUI()", 10);
 
 function update() {
     if(player.xp >= player.xpNeeded) {
-        player.xp = 0;
-        player.xpNeeded = Math.round(player.xpNeeded * player.multiplier);
-        player.level += 1;
-        console.log("Level up! Level: " + player.level + " Xpneeded: " + player.xpNeeded);
+        player.levelUp();
     }
     if(enemy.health <= 0) {
         player.gold += enemy.golddrop;
         player.xp += enemy.xpdrop;
         generateEnemy();
     }
+    if(player.health <= 0) {
+        console.log("You Died!");
+        player.health = player.maxHealth;
+        player.gold -= 5;
+        if(player.gold < 0 ) {
+            player.gold = 0;
+        }
+    }
 }
 
 function updateGUI() {
     document.getElementById("Ehealth").innerHTML = "Enemy Health: " + enemy.health + "/" + enemy.maxHealth;
     document.getElementById("health").innerHTML = "Health: " + player.health + "/" + player.maxHealth;
+    document.getElementById("gold").innerHTML = "Gold: " + player.gold;
 }
 
 function generateEnemy() {
@@ -44,12 +60,14 @@ function generateEnemy() {
     enemy.health = enemy.maxHealth;
     enemy.xpdrop = Math.floor((Math.random() * 9) + 1);
     enemy.golddrop = Math.floor((Math.random() * 9) + 1);
+    enemy.attack = Math.floor((Math.random() * 1) + 1);
     console.log("Created a new enemy");
     
 }
 
 function attack() {
     enemy.health -= player.attack;
+    player.health -= enemy.attack;
 }
 
 generateEnemy();
