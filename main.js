@@ -7,15 +7,6 @@ var player = {
     xpNeeded: 10,
     multiplier: 1.20,
     attack: 1,
-    levelUp: function() {
-        player.xp = 0;
-        player.xpNeeded = Math.round(player.xpNeeded * player.multiplier);
-        player.level += 1;
-        player.maxHealth += 2;
-        player.health = player.maxHealth;
-        player.attack += 1;
-        console.log("Level up! Level: " + player.level + " Xpneeded: " + player.xpNeeded);
-    }
 }
 var enemy = {
     name: "Goblin",
@@ -29,9 +20,20 @@ var enemy = {
 var gameLoop = setInterval("update()", 100);
 var gui = setInterval("updateGUI()", 10);
 
+
+function levelUp() {
+    player.xp = 0;
+    player.xpNeeded = Math.round(player.xpNeeded * player.multiplier);
+    player.level += 1;
+    player.maxHealth += 2;
+    player.health = player.maxHealth;
+    player.attack += 1;
+    console.log("Level up! Level: " + player.level + " Xpneeded: " + player.xpNeeded);
+}
+
 function update() {
     if(player.xp >= player.xpNeeded) {
-        player.levelUp();
+        levelUp();
     }
     if(enemy.health <= 0) {
         player.gold += enemy.golddrop;
@@ -52,6 +54,7 @@ function updateGUI() {
     document.getElementById("Ehealth").innerHTML = "Enemy Health: " + enemy.health + "/" + enemy.maxHealth;
     document.getElementById("health").innerHTML = "Health: " + player.health + "/" + player.maxHealth;
     document.getElementById("gold").innerHTML = "Gold: " + player.gold;
+    document.getElementById("level").innerHTML = "Level: " + player.level;
 }
 
 function generateEnemy() {
