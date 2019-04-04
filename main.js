@@ -19,6 +19,7 @@ var enemy = {
 
 var gameLoop = setInterval("update()", 100);
 var gui = setInterval("updateGUI()", 10);
+var autoSave = setInterval("save()", 30000)
 
 
 function levelUp() {
@@ -50,6 +51,21 @@ function update() {
     }
 }
 
+function save() {
+    localStorage.setItem("saveGame", player);
+    localStorage.setItem("enemy", enemy);
+}
+
+function load() {
+    if(localStorage.getItem("saveGame") == null) {
+        save();
+    }
+    player = localStorage.getItem("saveGame");
+    enemy = localStorage.getItem("enemy");
+}
+
+
+
 function updateGUI() {
     document.getElementById("Ehealth").innerHTML = "Enemy Health: " + enemy.health + "/" + enemy.maxHealth;
     document.getElementById("health").innerHTML = "Health: " + player.health + "/" + player.maxHealth;
@@ -63,7 +79,7 @@ function generateEnemy() {
     enemy.health = enemy.maxHealth;
     enemy.xpdrop = Math.floor((Math.random() * 9) + 1);
     enemy.golddrop = Math.floor((Math.random() * 9) + 1);
-    enemy.attack = Math.floor((Math.random() * 1) + 1);
+    enemy.attack = Math.floor((Math.random() * 2) + 1);
     console.log("Created a new enemy");
     
 }
@@ -74,4 +90,4 @@ function attack() {
 }
 
 generateEnemy();
-
+load();
