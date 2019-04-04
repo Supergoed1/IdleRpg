@@ -6,7 +6,7 @@ var player = {
     xp: 0,
     xpNeeded: 10,
     multiplier: 1.20,
-    attack: 1,
+    attack: 1
 }
 var enemy = {
     name: "Goblin",
@@ -19,8 +19,7 @@ var enemy = {
 
 var gameLoop = setInterval("update()", 100);
 var gui = setInterval("updateGUI()", 10);
-var autoSave = setInterval("save()", 30000)
-
+var autoSave = setInterval("save()", 30000);
 
 function levelUp() {
     player.xp = 0;
@@ -52,16 +51,19 @@ function update() {
 }
 
 function save() {
-    localStorage.setItem("saveGame", player);
-    localStorage.setItem("enemy", enemy);
+    localStorage.setItem("saveGame", JSON.stringify(player));
+    localStorage.setItem("enemy", JSON.stringify(enemy));
 }
 
 function load() {
     if(localStorage.getItem("saveGame") == null) {
         save();
+        console.log("No data found");
+        return;
     }
-    player = localStorage.getItem("saveGame");
-    enemy = localStorage.getItem("enemy");
+    console.log(JSON.parse(localStorage.getItem("saveGame")));
+    player = JSON.parse(localStorage.getItem("saveGame"));
+    enemy = JSON.parse(localStorage.getItem("enemy"));
 }
 
 
@@ -87,7 +89,12 @@ function generateEnemy() {
 function attack() {
     enemy.health -= player.attack;
     player.health -= enemy.attack;
+    save();
 }
 
-generateEnemy();
+window.onbeforeunload = save();
+
+if(localStorage.getItem("saveGame") == null) {
+    generateEnemy();
+}
 load();
