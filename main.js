@@ -74,6 +74,7 @@ function updateGUI() {
     document.getElementById("health").innerHTML = "Health: " + player.health + "/" + player.maxHealth;
     document.getElementById("gold").innerHTML = "Gold: " + player.gold;
     document.getElementById("level").innerHTML = "Level: " + player.level;
+    document.getElementById("attack").innerHTML = "Damage: " + player.attack;
 }
 
 function generateEnemy() {

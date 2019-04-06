@@ -26,15 +26,32 @@
 }
 
 .gold {
-  position: relative;
-  bottom: -100;
-  left: 675;
   color: gold;
+  font-size: 16;
 }
 
 .level {
   position: relative;
-  bottom: -50;
-  left: 675;
+  bottom: 105;
+  left: 17;
   color: aqua;
+  font-size: 18;
+}
+
+.attack {
+  position: relative;
+  bottom: 85;
+  left: 17;
+  color: red;
+  font-size: 16;
+}
+
+.statbox {
+  position: relative;
+  bottom: 85;
+  left: 17;
+  border: 8px double;
+  width: 200px;
+  height: 100px;
+  color: #A44541;
 }
