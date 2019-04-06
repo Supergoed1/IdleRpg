@@ -56,7 +56,7 @@ function save() {
 }
 
 function load() {
-    if(localStorage.getItem("saveGame") == null) {
+    if(localStorage == null) {
         save();
         console.log("No data found");
         return;
@@ -89,12 +89,10 @@ function generateEnemy() {
 function attack() {
     enemy.health -= player.attack;
     player.health -= enemy.attack;
+}
+
+window.onbeforeunload = function() {
     save();
-}
+};
 
-window.onbeforeunload = save();
-
-if(localStorage.getItem("saveGame") == null) {
-    generateEnemy();
-}
 load();
