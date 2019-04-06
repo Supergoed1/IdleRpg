@@ -7,7 +7,7 @@ var player = {
     xpNeeded: 10,
     multiplier: 1.20,
     attack: 1
-}
+};
 var enemy = {
     name: "Goblin",
     health: 5,
@@ -15,7 +15,8 @@ var enemy = {
     xpdrop: 5,
     golddrop: 5,
     attack: 1
-}
+};
+//Make a inventory with selling system
 
 var gameLoop = setInterval("update()", 100);
 var gui = setInterval("updateGUI()", 10);
