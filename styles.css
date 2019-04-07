@@ -45,13 +45,10 @@
   color: red;
   font-size: 16;
 }
-
-.statbox {
+.attackspeed {
   position: relative;
-  bottom: 85;
+  bottom: 80;
   left: 17;
-  border: 8px double;
-  width: 200px;
-  height: 100px;
-  color: #A44541;
+  color: red;
+  font-size: 16;
 }

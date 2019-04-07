@@ -1,3 +1,15 @@
+var items = {
+    wooden_sword: {
+        name: "Wooden Sword",
+        attack: 1,
+        attack_speed: 0.6
+    },
+    stone_sword: {
+        name: "Stone Sword",
+        attack: 2,
+        attack_speed: 0.8
+    }
+};
 var player = {
     health: 10,
     maxHealth: 10,
@@ -6,7 +18,7 @@ var player = {
     xp: 0,
     xpNeeded: 10,
     multiplier: 1.20,
-    weapon: wooden_sword
+    weapon: null
 };
 var enemy = {
     name: "Goblin",
@@ -14,9 +26,8 @@ var enemy = {
     maxHealth: 5,
     xpdrop: 5,
     golddrop: 5,
-    attack: 1
+    Eattack: 1
 };
-
 var canAttack = true;
 //Make a inventory with selling system
 
@@ -30,7 +41,6 @@ function levelUp() {
     player.level += 1;
     player.maxHealth += 2;
     player.health = player.maxHealth;
-    player.attack += 1;
     console.log("Level up! Level: " + player.level + " Xpneeded: " + player.xpNeeded);
 }
 
@@ -77,7 +87,7 @@ function updateGUI() {
     document.getElementById("gold").innerHTML = "Gold: " + player.gold;
     document.getElementById("level").innerHTML = "Level: " + player.level;
     document.getElementById("attack").innerHTML = "Damage: " + player.weapon.attack;
-    
+    document.getElementById("attackspeed").innerHTML = "Attack Speed: " + player.weapon.attack_speed;
 }
 function generateEnemy() {
     enemy.name = "Goblin";
@@ -96,11 +106,18 @@ function attack() {
         canAttack = true;
     }, player.weapon.attack_speed * 1000);
     enemy.health -= player.weapon.attack;
-    player.health -= enemy.attack;
+    player.health -= enemy.Eattack;
+}
+
+function changeWeapon(weapontochange) {
+    player.weapon = weapontochange;
+    player.weapon = weapontochange;
 }
 
 window.onbeforeunload = function() {
     save();
 };
+
+changeWeapon(items.wooden_sword);
 
 load();
