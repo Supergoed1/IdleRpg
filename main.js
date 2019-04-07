@@ -6,7 +6,7 @@ var player = {
     xp: 0,
     xpNeeded: 10,
     multiplier: 1.20,
-    attack: 1
+    weapon: wooden_sword
 };
 var enemy = {
     name: "Goblin",
@@ -16,6 +16,8 @@ var enemy = {
     golddrop: 5,
     attack: 1
 };
+
+var canAttack = true;
 //Make a inventory with selling system
 
 var gameLoop = setInterval("update()", 100);
@@ -74,9 +76,9 @@ function updateGUI() {
     document.getElementById("health").innerHTML = "Health: " + player.health + "/" + player.maxHealth;
     document.getElementById("gold").innerHTML = "Gold: " + player.gold;
     document.getElementById("level").innerHTML = "Level: " + player.level;
-    document.getElementById("attack").innerHTML = "Damage: " + player.attack;
+    document.getElementById("attack").innerHTML = "Damage: " + player.weapon.attack;
+    
 }
-
 function generateEnemy() {
     enemy.name = "Goblin";
     enemy.maxHealth = Math.floor((Math.random() * 9) + 1);
@@ -85,11 +87,15 @@ function generateEnemy() {
     enemy.golddrop = Math.floor((Math.random() * 9) + 1);
     enemy.attack = Math.floor((Math.random() * 2) + 1);
     console.log("Created a new enemy");
-    
 }
 
 function attack() {
-    enemy.health -= player.attack;
+    if(!canAttack) return;
+    canAttack = false;
+    setTimeout(() => {
+        canAttack = true;
+    }, player.weapon.attack_speed * 1000);
+    enemy.health -= player.weapon.attack;
     player.health -= enemy.attack;
 }
 
