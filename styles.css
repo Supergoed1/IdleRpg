@@ -26,13 +26,16 @@
 }
 
 .gold {
+  position: relative;
+  bottom: 0;
+  left: 17;
   color: gold;
   font-size: 16;
 }
 
 .level {
   position: relative;
-  bottom: 105;
+  bottom: 90;
   left: 17;
   color: aqua;
   font-size: 18;
