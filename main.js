@@ -95,7 +95,7 @@ function generateEnemy() {
     enemy.health = enemy.maxHealth;
     enemy.xpdrop = Math.floor((Math.random() * 9) + 1);
     enemy.golddrop = Math.floor((Math.random() * 9) + 1);
-    enemy.attack = Math.floor((Math.random() * 2) + 1);
+    enemy.Eattack = Math.floor((Math.random() * 2) + 1);
     console.log("Created a new enemy");
 }
 
