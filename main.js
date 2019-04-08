@@ -63,6 +63,19 @@ function update() {
     }
 }
 
+function reset() {
+    confirm("Are you sure you want to reset?");
+    player.level = 1;
+    player.gold = 0;
+    player.weapon = items.wooden_sword;
+    player.xp = 0;
+    player.xpNeeded = 10;
+    player.health = 10;
+    player.maxHealth = 10;
+    generateEnemy();
+    save();
+}
+
 function save() {
     localStorage.setItem("saveGame", JSON.stringify(player));
     localStorage.setItem("enemy", JSON.stringify(enemy));
