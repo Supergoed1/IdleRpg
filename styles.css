@@ -55,3 +55,27 @@
   color: red;
   font-size: 16;
 }
+
+.eatbutton {
+  background-color: red;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  position: relative;
+  bottom: -275;
+  left: 675;
+}
+
+.gatherforest {
+  background-color: darkgreen;
+  color: rgb(0, 190, 0);
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  position: relative;
+  bottom: 10;
+  left: 850;
+}

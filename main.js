@@ -23,7 +23,7 @@ var player = {
     xp: 0,
     xpNeeded: 10,
     multiplier: 1.20,
-    weapon: null
+    weapon: null,
 };
 var enemy = {
     name: "Goblin",
@@ -33,6 +33,23 @@ var enemy = {
     golddrop: 5,
     Eattack: 1
 };
+
+var inventory = {
+    materials: {
+        wood: {
+            name: "Wood",
+            amount: 0
+        }
+    },
+    food: {
+        apple: {
+            name: "Apple",
+            health: 2,
+            amount: 0
+        }
+    }
+};
+var defaultinv = inventory;
 var canAttack = true;
 //Make a inventory with selling system
 //Add a THE OLDE SHOPPE
@@ -78,6 +95,7 @@ function reset() {
     player.xpNeeded = 10;
     player.health = 10;
     player.maxHealth = 10;
+    inventory = defaultinv;
     generateEnemy();
     save();
 }
@@ -85,8 +103,8 @@ function reset() {
 function save() {
     localStorage.setItem("saveGame", JSON.stringify(player));
     localStorage.setItem("enemy", JSON.stringify(enemy));
+    localStorage.setItem("inventory", JSON.stringify(inventory))
 }
-
 function load() {
     if(localStorage == null) {
         save();
@@ -96,9 +114,19 @@ function load() {
     console.log(JSON.parse(localStorage.getItem("saveGame")));
     player = JSON.parse(localStorage.getItem("saveGame"));
     enemy = JSON.parse(localStorage.getItem("enemy"));
+    inventory = JSON.parse(localStorage.getItem("inventory"))
 }
 
-
+function eat(itemtoeat) {
+    if(itemtoeat.health == undefined) return;
+    if(itemtoeat.amount <= 0) return;
+    if(player.health + itemtoeat.health > player.maxHealth) {
+        return;
+    }
+    player.health += itemtoeat.health;
+    itemtoeat.amount -= 1;
+    if(player.health > player.maxHealth) player.health = player.maxHealth;
+}
 
 function updateGUI() {
     document.getElementById("Ehealth").innerHTML = "Enemy Health: " + enemy.health + "/" + enemy.maxHealth;
@@ -131,6 +159,16 @@ function attack() {
 function changeWeapon(weapontochange) {
     player.weapon = weapontochange;
     player.weapon = weapontochange;
+}
+
+function gatherForest() {
+    var found_apples;
+    var found_wood;
+    found_apples = Math.floor(Math.random() * 4);
+    found_wood = Math.floor(Math.random() * 5);
+    console.log("You gathered in the forest and got " + found_wood + " wood and " + found_apples + "apples");
+    inventory.food.apple.amount += found_apples;
+    inventory.materials.wood.amount += found_wood;
 }
 
 window.onbeforeunload = function() {
