@@ -8,6 +8,11 @@ var items = {
         name: "Stone Sword",
         attack: 2,
         attack_speed: 0.8
+    },
+    op_sword: {
+        name: "OP SWORD",
+        attack: 999,
+        attack_speed: 0.0001
     }
 };
 var player = {
@@ -30,6 +35,7 @@ var enemy = {
 };
 var canAttack = true;
 //Make a inventory with selling system
+//Add a THE OLDE SHOPPE
 
 var gameLoop = setInterval("update()", 100);
 var gui = setInterval("updateGUI()", 10);
