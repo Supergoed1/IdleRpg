@@ -55,7 +55,7 @@ var canAttack = true;
 //Add a THE OLDE SHOPPE
 
 var gameLoop = setInterval("update()", 100);
-var gui = setInterval("updateGUI()", 10);
+var gui = setInterval("updateGUI()", 100);
 var autoSave = setInterval("save()", 30000);
 
 function levelUp() {
