@@ -108,7 +108,7 @@ function save() {
 function load() {
     if(localStorage == null) {
         save();
-        console.log("No data found");
+        console.log("No data found or outdated data found");
         return;
     }
     console.log(JSON.parse(localStorage.getItem("saveGame")));
@@ -135,6 +135,7 @@ function updateGUI() {
     document.getElementById("level").innerHTML = "Level: " + player.level;
     document.getElementById("attack").innerHTML = "Damage: " + player.weapon.attack;
     document.getElementById("attackspeed").innerHTML = "Attack Speed: " + player.weapon.attack_speed;
+    document.getElementById("apples").innerHTML = "Apples: " + inventory.food.apple.amount;
 }
 function generateEnemy() {
     enemy.name = "Goblin";
