@@ -78,7 +78,7 @@ function update() {
         generateEnemy();
     }
     if(player.health <= 0) {
-        console.log("You Died!");
+        logText("You Died!");
         player.health = player.maxHealth;
         player.gold -= 5;
         if(player.gold < 0 ) {
@@ -146,7 +146,7 @@ function generateEnemy() {
     enemy.xpdrop = Math.floor((Math.random() * 9) + 1);
     enemy.golddrop = Math.floor((Math.random() * 9) + 1);
     enemy.Eattack = Math.floor((Math.random() * 2) + 1);
-    console.log("Created a new enemy");
+    logText("A new enemy has spawned");
 }
 
 function attack() {
@@ -157,9 +157,18 @@ function attack() {
     }, player.weapon.attack_speed * 1000);
     enemy.health -= player.weapon.attack;
     player.health -= enemy.Eattack;
-    log.innerHTML += "<br> hi"
 }
 
+function logText(message) {
+    if(log.childNodes.length >= 9) {
+        log.children[0].innerHTML = message;
+        return;
+    }
+    element = document.createElement("div");
+    element.innerHTML = message;
+    
+    log.appendChild(element);
+}
 function changeWeapon(weapontochange) {
     player.weapon = weapontochange;
     player.weapon = weapontochange;
@@ -170,7 +179,7 @@ function gatherForest() {
     var found_wood;
     found_apples = Math.floor(Math.random() * 4);
     found_wood = Math.floor(Math.random() * 5);
-    console.log("You gathered in the forest and got " + found_wood + " wood and " + found_apples + "apples");
+    logText("You gathered in the forest and found " + found_wood + " wood and " + found_apples + " apples");
     inventory.food.apple.amount += found_apples;
     inventory.materials.wood.amount += found_wood;
 }

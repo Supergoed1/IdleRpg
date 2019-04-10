@@ -26,25 +26,40 @@
 }
 
 .gold {
+  position: fixed;
+  left: 2%;
+  bottom: 90%;
   color: gold;
   font-size: 16;
 }
 
 .level {
+  position: fixed;
+  left: 2%;
+  bottom: 95%;
   color: aqua;
   font-size: 18;
 }
 
 .attack {
+  position: fixed;
+  left: 2%;
+  bottom: 85%;
   color: red;
   font-size: 16;
 }
 .attackspeed {
+  position: fixed;
+  left: 2%;
+  bottom: 80%;
   color: red;
   font-size: 16;
 }
 
 .eatbutton {
+  position: fixed;
+  left: 60%;
+  bottom: 50%;
   background-color: red;
   color: white;
   text-align: center;
@@ -54,6 +69,9 @@
 }
 
 .gatherforest {
+  position: fixed;
+  left: 90%;
+  bottom: 90%;
   background-color: darkgreen;
   color: rgb(0, 190, 0);
   text-align: center;
@@ -63,6 +81,9 @@
 }
 
 #inventory {
+  position: fixed;
+  left: 75%;
+  bottom: 75%;
   border: 6px double brown ;
   text-align: start;
   position: fixed;
@@ -71,7 +92,12 @@
 }
 
 #log {
+  position: fixed;
+  left: 79%;
+  bottom: 1%;
+  width: 20%;
+  height: 25%;
   border: 4px solid black;
   background-color: rgb(250, 248, 248);
-  text-align: left;
+  text-align: initial;
 }
