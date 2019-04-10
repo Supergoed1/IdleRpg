@@ -1,2 +1,2 @@
 # IdleRpg
-I dont know mate 
+supergoed1.github.io/IdleRpg
