@@ -57,6 +57,7 @@ var canAttack = true;
 var gameLoop = setInterval("update()", 100);
 var gui = setInterval("updateGUI()", 100);
 var autoSave = setInterval("save()", 30000);
+var log = document.getElementById("log");
 
 function levelUp() {
     player.xp = 0;
@@ -136,6 +137,7 @@ function updateGUI() {
     document.getElementById("attack").innerHTML = "Damage: " + player.weapon.attack;
     document.getElementById("attackspeed").innerHTML = "Attack Speed: " + player.weapon.attack_speed;
     document.getElementById("apples").innerHTML = "Apples: " + inventory.food.apple.amount;
+    document.getElementById("wood").innerHTML = "Wood: " + inventory.materials.wood.amount;
 }
 function generateEnemy() {
     enemy.name = "Goblin";
@@ -155,6 +157,7 @@ function attack() {
     }, player.weapon.attack_speed * 1000);
     enemy.health -= player.weapon.attack;
     player.health -= enemy.Eattack;
+    log.innerHTML += "<br> hi"
 }
 
 function changeWeapon(weapontochange) {

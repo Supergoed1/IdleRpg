@@ -6,52 +6,40 @@
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  position: relative;
-  bottom: -275;
-  left: 675;
+  position: fixed;
+  left: 50%;
+  bottom: 50%;
 }
 
 .Ehealth {
-    position: relative;
-  bottom: -200;
-  left: 675;
+  position: fixed;
+  left: 50%;
+  bottom: 60%;
   color: red;
 }
 
 .health {
-    position: relative;
-  bottom: -260;
-  left: 675;
+  position: fixed;
+  left: 50%;
+  bottom: 47%;
   color: red;
 }
 
 .gold {
-  position: relative;
-  bottom: 0;
-  left: 17;
   color: gold;
   font-size: 16;
 }
 
 .level {
-  position: relative;
-  bottom: 90;
-  left: 17;
   color: aqua;
   font-size: 18;
 }
 
 .attack {
-  position: relative;
-  bottom: 85;
-  left: 17;
   color: red;
   font-size: 16;
 }
 .attackspeed {
-  position: relative;
-  bottom: 80;
-  left: 17;
   color: red;
   font-size: 16;
 }
@@ -63,9 +51,6 @@
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
-  position: relative;
-  bottom: -275;
-  left: 675;
 }
 
 .gatherforest {
@@ -75,17 +60,18 @@
   text-decoration: none;
   display: inline-block;
   font-size: 12px;
-  position: relative;
-  bottom: 10;
-  left: 850;
 }
 
 #inventory {
   border: 6px double brown ;
   text-align: start;
-  position: relative;
-  bottom: 50;
-  left: 850;
+  position: fixed;
   width: 180px;
   height: 100px;
+}
+
+#log {
+  border: 4px solid black;
+  background-color: rgb(250, 248, 248);
+  text-align: left;
 }
