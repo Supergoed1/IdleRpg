@@ -88,7 +88,6 @@ function update() {
 }
 
 function reset() {
-    confirm("Are you sure you want to reset?");
     player.level = 1;
     player.gold = 0;
     player.weapon = items.wooden_sword;
