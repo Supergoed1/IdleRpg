@@ -1,6 +1,3 @@
-var recipes = {
-
-}
 var items = {
     wooden_sword: {
         name: "Wooden Sword",
@@ -100,6 +97,14 @@ function reset() {
         xpNeeded: 10,
         multiplier: 1.20,
         weapon: items.wooden_sword,
+    };
+    enemy = {
+        name: "Goblin",
+        health: 5,
+        maxHealth: 5,
+        xpdrop: 5,
+        golddrop: 5,
+        Eattack: 1
     }
     inventory = defaultinv;
     generateEnemy();
@@ -189,11 +194,19 @@ function gatherForest() {
     inventory.materials.wood.amount += found_wood;
 }
 
+function ObjectLength( object ) {
+    var length = 0;
+    for( var key in object ) {
+        if( object.hasOwnProperty(key) ) {
+            ++length;
+        }
+    }
+    return length;
+};
+
 window.onbeforeunload = function() {
     save();
 };
-
-console.log(items.length);
 
 
 load();
