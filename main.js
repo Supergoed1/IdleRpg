@@ -1,3 +1,6 @@
+var recipes = {
+
+}
 var items = {
     wooden_sword: {
         name: "Wooden Sword",
@@ -190,6 +193,7 @@ window.onbeforeunload = function() {
     save();
 };
 
-changeWeapon(items.wooden_sword);
+console.log(items.length);
+
 
 load();
