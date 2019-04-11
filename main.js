@@ -88,13 +88,16 @@ function update() {
 }
 
 function reset() {
-    player.level = 1;
-    player.gold = 0;
-    player.weapon = items.wooden_sword;
-    player.xp = 0;
-    player.xpNeeded = 10;
-    player.health = 10;
-    player.maxHealth = 10;
+    player = {
+        health: 10,
+        maxHealth: 10,
+        gold: 0,
+        level: 1,
+        xp: 0,
+        xpNeeded: 10,
+        multiplier: 1.20,
+        weapon: items.wooden_sword,
+    }
     inventory = defaultinv;
     generateEnemy();
     save();
