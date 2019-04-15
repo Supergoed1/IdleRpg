@@ -88,6 +88,7 @@ function update() {
 }
 
 function reset() {
+    confirm("Are you sure you want to reset?");
     player = {
         health: 10,
         maxHealth: 10,
@@ -176,7 +177,6 @@ function logText(message) {
     }
     element = document.createElement("div");
     element.innerHTML = message;
-    
     log.appendChild(element);
 }
 function changeWeapon(weapontochange) {
@@ -192,7 +192,7 @@ function gatherForest() {
     logText("You gathered in the forest and found " + found_wood + " wood and " + found_apples + " apples");
     inventory.food.apple.amount += found_apples;
     inventory.materials.wood.amount += found_wood;
-}
+};
 
 function ObjectLength( object ) {
     var length = 0;
