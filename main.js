@@ -31,7 +31,9 @@ var enemy = {
     maxHealth: 5,
     xpdrop: 5,
     golddrop: 5,
-    Eattack: 1
+    Eattack: 1,
+    healthmin: 1,
+    healthmax: 7
 };
 
 var inventory = {
@@ -105,7 +107,9 @@ function reset() {
         maxHealth: 5,
         xpdrop: 5,
         golddrop: 5,
-        Eattack: 1
+        Eattack: 1,
+        healthmin: 1,
+        healthmax: 7
     }
     inventory = defaultinv;
     generateEnemy();
@@ -152,11 +156,13 @@ function updateGUI() {
 }
 function generateEnemy() {
     enemy.name = "Goblin";
-    enemy.maxHealth = Math.floor((Math.random() * 9) + 1);
+    enemy.maxHealth = Math.floor((Math.random() * Math.round(enemy.healthmax)) + Math.round(enemy.healthmin));
     enemy.health = enemy.maxHealth;
     enemy.xpdrop = Math.floor((Math.random() * 9) + 1);
     enemy.golddrop = Math.floor((Math.random() * 9) + 1);
     enemy.Eattack = Math.floor((Math.random() * 2) + 1);
+    enemy.healthmin += 0.20;
+    enemy.healthmax += 0.10;
     logText("A new enemy has spawned");
 }
 
