@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="styles.css">
     <title>Idle Rpg</title>
 </head>
-<body>
-    <canvas>
+<body style="background-color:lightblue;">
+    <canvas id="canvas" width="100" height="100" style="position: fixed;left: 52%;bottom: 63%;"></canvas>
         <button onclick="attack()" class="AttackButton">Attack</button>
         <button onclick="eat(inventory.food.apple)" class="eatbutton">Eat a apple <br> +2 health</button>
         <button onclick="gatherForest()" class="gatherforest">Gather items in the forest</button>
@@ -32,7 +32,6 @@
         <div id="level" class="level">Health 10/10</div>
         <div id="attack" class="attack">Health 10/10</div>
         <div id="attackspeed" class="attackspeed">Attack Speed: 1</div>
-    </canvas>
     <script src="main.js"></script>
 </body>
 </html>

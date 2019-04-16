@@ -53,6 +53,13 @@ var inventory = {
 };
 var defaultinv = inventory;
 var canAttack = true;
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "14px Arial";
+ctx.fillStyle = "red";
+var damagetextx = 75;
+var damagetexty = 100;
+var damagetext;
 //Make a inventory with selling system
 //Add a THE OLDE SHOPPE
 
@@ -166,14 +173,45 @@ function generateEnemy() {
     logText("A new enemy has spawned");
 }
 
+function damageAnimation(damageamount, critical) {
+    if(critical == true) {ctx.fillStyle = "yellow";}
+    ctx.globalAlpha = 1;
+    var interval = setInterval(() => {
+        if(damagetexty <= 70) {
+            ctx.fillStyle = "red";
+            clearInterval(interval);
+        } 
+        damagetextx -= Math.random() * 7 - 2;
+        damagetexty -= 3;
+        ctx.globalAlpha -= 0.20;
+        ctx.clearRect(0,0, canvas.width,canvas.height);
+        ctx.fillText("-" + damageamount,damagetextx,damagetexty);
+    }, 100);
+    damagetextx = 75;
+    damagetexty = 100;
+}
+
 function attack() {
+    var isCritical = false;
     if(!canAttack) return;
+    var randnum = Math.floor(Math.random() * 11)
+    if(randnum == 6 || randnum == 7) isCritical = true;
     canAttack = false;
     setTimeout(() => {
         canAttack = true;
     }, player.weapon.attack_speed * 1000);
-    enemy.health -= player.weapon.attack;
+    if(isCritical == true)  {
+        enemy.health -= player.weapon.attack * 2;
+    } else {
+        enemy.health -= player.weapon.attack;
+    }
     player.health -= enemy.Eattack;
+    if(isCritical == true) {
+        damageAnimation(player.weapon.attack * 2, true);
+    } else {
+        damageAnimation(player.weapon.attack, false);
+    }
+    
 }
 
 function logText(message) {
