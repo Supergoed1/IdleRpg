@@ -219,7 +219,7 @@ function logText(message) {
         log.children[0].innerHTML = message;
         return;
     }
-    element = document.createElement("div");
+    element = document.createElement("li");
     element.innerHTML = message;
     log.appendChild(element);
 }
