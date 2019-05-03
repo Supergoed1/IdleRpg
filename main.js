@@ -59,7 +59,6 @@ var gui = setInterval("updateGUI()", 100);
 var autoSave = setInterval("save()", 30000);
 var log = document.getElementById("log");
 
-console.log($());
 
 function levelUp() {
     player.xp = 0;
