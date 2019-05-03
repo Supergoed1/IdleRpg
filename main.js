@@ -31,7 +31,9 @@ var enemy = {
     maxHealth: 5,
     xpdrop: 5,
     golddrop: 5,
-    Eattack: 1
+    Eattack: 1,
+    healthmin: 1,
+    healthmax: 7
 };
 
 var inventory = {
@@ -51,6 +53,13 @@ var inventory = {
 };
 var defaultinv = inventory;
 var canAttack = true;
+var canvas = document.getElementById("canvas");
+var ctx = canvas.getContext("2d");
+ctx.font = "14px Arial";
+ctx.fillStyle = "red";
+var damagetextx = 75;
+var damagetexty = 100;
+var damagetext;
 //Make a inventory with selling system
 //Add a THE OLDE SHOPPE
 
@@ -89,6 +98,7 @@ function update() {
 }
 
 function reset() {
+    confirm("Are you sure you want to reset?");
     player = {
         health: 10,
         maxHealth: 10,
@@ -105,7 +115,9 @@ function reset() {
         maxHealth: 5,
         xpdrop: 5,
         golddrop: 5,
-        Eattack: 1
+        Eattack: 1,
+        healthmin: 1,
+        healthmax: 7
     }
     inventory = defaultinv;
     generateEnemy();
@@ -152,22 +164,55 @@ function updateGUI() {
 }
 function generateEnemy() {
     enemy.name = "Goblin";
-    enemy.maxHealth = Math.floor((Math.random() * 9) + 1);
+    enemy.maxHealth = Math.floor((Math.random() * Math.round(enemy.healthmax)) + Math.round(enemy.healthmin));
     enemy.health = enemy.maxHealth;
     enemy.xpdrop = Math.floor((Math.random() * 9) + 1);
     enemy.golddrop = Math.floor((Math.random() * 9) + 1);
     enemy.Eattack = Math.floor((Math.random() * 2) + 1);
+    enemy.healthmin += 0.20;
+    enemy.healthmax += 0.10;
     logText("A new enemy has spawned");
 }
 
+function damageAnimation(damageamount, critical) {
+    if(critical == true) {ctx.fillStyle = "yellow";}
+    ctx.globalAlpha = 1;
+    var interval = setInterval(() => {
+        if(damagetexty <= 70) {
+            ctx.fillStyle = "red";
+            clearInterval(interval);
+        } 
+        damagetextx -= Math.random() * 7 - 2;
+        damagetexty -= 3;
+        ctx.globalAlpha -= 0.20;
+        ctx.clearRect(0,0, canvas.width,canvas.height);
+        ctx.fillText("-" + damageamount,damagetextx,damagetexty);
+    }, 100);
+    damagetextx = 75;
+    damagetexty = 100;
+}
+
 function attack() {
+    var isCritical = false;
     if(!canAttack) return;
+    var randnum = Math.floor(Math.random() * 11)
+    if(randnum == 6 || randnum == 7) isCritical = true;
     canAttack = false;
     setTimeout(() => {
         canAttack = true;
     }, player.weapon.attack_speed * 1000);
-    enemy.health -= player.weapon.attack;
+    if(isCritical == true)  {
+        enemy.health -= player.weapon.attack * 2;
+    } else {
+        enemy.health -= player.weapon.attack;
+    }
     player.health -= enemy.Eattack;
+    if(isCritical == true) {
+        damageAnimation(player.weapon.attack * 2, true);
+    } else {
+        damageAnimation(player.weapon.attack, false);
+    }
+    
 }
 
 function logText(message) {
@@ -177,7 +222,6 @@ function logText(message) {
     }
     element = document.createElement("div");
     element.innerHTML = message;
-    
     log.appendChild(element);
 }
 function changeWeapon(weapontochange) {
@@ -193,7 +237,7 @@ function gatherForest() {
     logText("You gathered in the forest and found " + found_wood + " wood and " + found_apples + " apples");
     inventory.food.apple.amount += found_apples;
     inventory.materials.wood.amount += found_wood;
-}
+};
 
 function ObjectLength( object ) {
     var length = 0;
